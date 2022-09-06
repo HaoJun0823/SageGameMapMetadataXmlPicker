@@ -105,7 +105,7 @@ namespace XmlMetadataPicker
             dec.PrependChild(xml.CreateComment("Target Directory: " + dir.FullName));
             dec.PrependChild(xml.CreateComment(DateTime.Now.ToString()));
             dec.PrependChild(xml.CreateComment("https://blog.haojun0823.xyz/"));
-            dec.PrependChild(xml.CreateComment("HaoJun0823 SageGameMapMetadataXmlPicker"));
+            dec.PrependChild(xml.CreateComment("HaoJun0823 SageGameMapMetadataXmlPicker https://github.com/HaoJun0823/SageGameMapMetadataXmlPicker/"));
 
 
 
