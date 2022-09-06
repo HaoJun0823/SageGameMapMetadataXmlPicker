@@ -5,6 +5,8 @@ using System.Text;
 using System.IO;
 using System.Threading;
 using System.Xml;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace XmlMetadataPicker
 {
@@ -50,6 +52,8 @@ namespace XmlMetadataPicker
         }
 
 
+        
+
 
         static void GetMapMetaData()
         {
@@ -70,7 +74,24 @@ namespace XmlMetadataPicker
                 Console.WriteLine("Try to Get MapMetaData From " + file.FullName);
 
                 XmlDocument mapXml = new XmlDocument();
-                mapXml.Load(file.FullName);
+
+
+
+
+
+                //using (XmlReader reader = XmlReader.Create(file.FullName, new XmlReaderSettings { CheckCharacters = false }))
+                using(StreamReader reader = new StreamReader(file.FullName))
+                {
+
+                    string code = reader.ReadToEnd();
+
+
+                    string finalcode = Regex.Replace(code,"[\x00-\x08\x0B\x0C\x0E-\x1F\x26]","",RegexOptions.Compiled);
+
+                    mapXml.LoadXml(finalcode);
+                }
+
+                
 
                 XmlNodeList xnl =  mapXml.GetElementsByTagName("MapMetaData");
 
